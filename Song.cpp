@@ -7,7 +7,7 @@ using namespace std;
         size=MAX_SIZE;
     }
 
-    Song::Song(string _name, string _artist, int _size){
+    Song::Song(string _artist, string _name, int _size){
         name=_name;
         artist=_artist;
         size=_size;
