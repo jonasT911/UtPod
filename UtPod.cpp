@@ -131,6 +131,35 @@ cout<<" empty ";//debug
 
     }
 
+    void UtPod::clearMemory(){
+        SongNode *trailer=songs;
+        SongNode *iterate=songs;
+        bool isMore=true;
+        if (!songs){
+            isMore=false;
+        }
+         while (isMore) {
+
+             delete trailer;
+             trailer=iterate;
+         if (iterate->next) {
+             iterate = iterate->next;
+         } else {
+             isMore = false;
+         }
+
+     }
+         songs=nullptr;
+    }
+
+
+
+    void UtPod::swapSongs(Song &s1,Song &s2){
+        Song temp=s1;
+        s1=s2;
+        s2=temp;
+    }
+
     UtPod::~UtPod(){
         cout<<"destructor";
     }

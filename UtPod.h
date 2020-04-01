@@ -136,6 +136,8 @@ public:
     int getRemainingMemory();
 
 
+    void swapSongs(Song &s1,Song &s2);
+
     ~UtPod();
 
 };
