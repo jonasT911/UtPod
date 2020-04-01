@@ -55,17 +55,22 @@ cout<<"adding Song,"<<endl;//debug
         }
         cout<<"List has Songs";//debug
 
+        SongNode *trailer=songs;
         if (songs->s==s){
             cout<<"Head Found,";
             //list head is target
+
             songs=songs->next;//free Space?
+            delete trailer;
             return 0;
         }
-        SongNode *trailer=songs;
+
         while (isMore){
         if(iterate->s==s){
             cout<<"Song Found,";
+
             trailer->next=iterate->next;//free Space?
+            delete iterate;
             return 0;
         }
             trailer=iterate;
