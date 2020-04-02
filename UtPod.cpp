@@ -9,7 +9,6 @@ using namespace std;
 
 
     UtPod::UtPod(){
-cout<<" Start,";//debug
         SongNode songList;
         songs= nullptr;
         memSize=MAX_MEMORY;
@@ -40,9 +39,9 @@ cout<<" Start,";//debug
         temp->next=songs;
 
        int remainingMemory=getRemainingMemory();
-       if(remainingMemory>s.getSize()){
+       if(remainingMemory>=s.getSize()){
            //pushing song to the list
-cout<<"adding Song,"<<endl;//debug
+
         songs=temp;
            return SUCCESS;
        }else{
@@ -52,29 +51,28 @@ cout<<"adding Song,"<<endl;//debug
 
     int UtPod::removeSong(Song const &s){
 
-        cout<<"Removing SOng,";
+
         bool isMore=true;
         SongNode *iterate = songs;
         if(songs== nullptr){
-            cout<<"Empty List";//debug
+
             isMore=false;//empty List
             return NOT_FOUND;
         }
-        cout<<"List has Songs";//debug
+
 
         SongNode *trailer=songs;
         if (songs->s==s){
-            cout<<"Head Found,";
             //list head is target
-
-            songs=songs->next;//free Space?
+cout<<"head";
+            songs=songs->next;
             delete trailer;
             return 0;
         }
 
         while (isMore){
         if(iterate->s==s){
-            cout<<"Song Found,";
+
 
             trailer->next=iterate->next;//free Space?
             delete iterate;
@@ -87,7 +85,7 @@ cout<<"adding Song,"<<endl;//debug
                 isMore=false;
             }
         }
-        cout<<"Missing Song";
+
         return NOT_FOUND;
     }
 
@@ -111,9 +109,7 @@ cout<<"adding Song,"<<endl;//debug
     }
 
     int UtPod::getRemainingMemory(){
-        cout<<" get Remaining,";// debug
         int usedMemory=0;
-
 
         if(songs) {
             SongNode iterate = *songs;
@@ -128,11 +124,9 @@ cout<<"adding Song,"<<endl;//debug
                     isMore=false;
                 }
             }
-            usedMemory += iterate.s.getSize();//for final song in list
-            cout << " Remaining got, ";//debug
+
             return memSize - usedMemory;
         }else{
-cout<<" empty ";//debug
             return memSize;
         }
 
@@ -164,14 +158,12 @@ cout<<" empty ";//debug
     void UtPod::swapSongs(int &nodeOne,int &nodeTwo){
         SongNode *searchOne=songs;
         SongNode *searchTwo=songs;
-//cout<<"StartSwap";
        for(int i=0;i<nodeOne;i++){
            searchOne=searchOne->next;
        }
         for(int i=0;i<nodeTwo;i++){
             searchTwo=searchTwo->next;
         }
-       // cout<<"Swaping"<<endl;
         Song temp=searchTwo->s;
         searchTwo->s=searchOne->s;
         searchOne->s=temp;
@@ -180,21 +172,18 @@ cout<<" empty ";//debug
 
     void UtPod::shuffle(){
         int listSize=numSongs();
-cout<<endl<<"shuffle"<<endl;//debug
         int song1=0;
         int song2=0;
 
         for(int i=0;i<listSize*5;i++) {
             song1 = rand() % listSize;
             song2 = rand() % listSize;
-            //cout << "first = " << song1 << " seccond = " << song2 << endl;
             swapSongs(song1, song2);
         }
 
     }
 
     void UtPod::sortSongList(){
-        cout<<"sorting"<<endl;
 
         SongNode *lowestSong=songs;
         int lowestPosition=0;
@@ -213,7 +202,6 @@ cout<<endl<<"shuffle"<<endl;//debug
                 iterate=iterate->next;
             }
 
-            cout<<"swapping "<<i<<" and "<<lowestPosition<<endl;
             swapSongs(i,lowestPosition);
             swapSong=swapSong->next;
         }

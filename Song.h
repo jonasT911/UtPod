@@ -19,7 +19,7 @@ private:
 
 public:
     Song();
-    Song(string name, string artist, int size);
+    Song(string _artist, string _name, int size);
 
     string getName() const;
     string getArtist() const;
