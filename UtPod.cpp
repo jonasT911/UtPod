@@ -3,6 +3,7 @@
 
 #include "Song.h"
 #include "UtPod.h"
+#include <ctime>
 
 using namespace std;
 
@@ -13,11 +14,17 @@ cout<<" Start,";//debug
         songs= nullptr;
         memSize=MAX_MEMORY;
 
+        unsigned int currentTime=(unsigned) time(0);
+        srand(currentTime);
+
     }
 
     UtPod::UtPod(int size){
 
-       songs->next=nullptr;
+        SongNode songList;
+        songs=nullptr;
+        unsigned int currentTime=(unsigned) time(0);
+        srand(currentTime);
 
         if(size>MAX_MEMORY||size<=0){
             memSize=MAX_MEMORY;
@@ -154,12 +161,56 @@ cout<<" empty ";//debug
 
 
 
-    void UtPod::swapSongs(Song &s1,Song &s2){
-        Song temp=s1;
-        s1=s2;
-        s2=temp;
+    void UtPod::swapSongs(int &nodeOne,int &nodeTwo){
+        SongNode *searchOne=songs;
+        SongNode *searchTwo=songs;
+//cout<<"StartSwap";
+       for(int i=0;i<nodeOne;i++){
+           searchOne=searchOne->next;
+       }
+        for(int i=0;i<nodeTwo;i++){
+            searchTwo=searchTwo->next;
+        }
+       // cout<<"Swaping"<<endl;
+        Song temp=searchTwo->s;
+        searchTwo->s=searchOne->s;
+        searchOne->s=temp;
+
+    }
+
+    void UtPod::shuffle(){
+        int listSize=numSongs();
+cout<<endl<<"shuffle"<<endl;//debug
+        int song1=0;
+        int song2=0;
+
+        for(int i=0;i<listSize*5;i++) {
+            song1 = rand() % listSize;
+            song2 = rand() % listSize;
+            //cout << "first = " << song1 << " seccond = " << song2 << endl;
+            swapSongs(song1, song2);
+        }
+
+    }
+
+    void UtPod::sortSongList(){
+        cout<<"sorting";
+    }
+    int UtPod::numSongs() {
+        int count=0;
+
+        if(songs){
+            SongNode iterate=*songs;
+            count++;
+            while (iterate.next){
+                count++;
+                iterate=*iterate.next;
+            }
+        }
+
+        return count;
     }
 
     UtPod::~UtPod(){
-        cout<<"destructor";
+
     }

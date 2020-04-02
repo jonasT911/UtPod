@@ -23,7 +23,10 @@ private:
 
     int memSize;
 
+    void swapSongs(int &nodeOne,int &nodeTwo);
+    int numSongs();
 public:
+
     //Default constructor
     //set the memory size to MAX_MEMORY
     UtPod();
@@ -136,7 +139,7 @@ public:
     int getRemainingMemory();
 
 
-    void swapSongs(Song &s1,Song &s2);
+
 
     ~UtPod();
 

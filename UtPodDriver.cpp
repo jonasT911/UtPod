@@ -53,9 +53,11 @@ cout<<" Pod Created,";//debug
     //cout << "add result = " << result << endl;
 
     t.showSongList();
-    cout<<endl<<"swap"<<endl<<endl;//debug
-    t.swapSongs(s3,s2);
+    t.shuffle();
     t.showSongList();
+    t.shuffle();
+    t.showSongList();
+
 
     result = t.removeSong(s2);
     cout << "delete result = " << result << endl;
@@ -67,7 +69,9 @@ cout<<" Pod Created,";//debug
     t.showSongList();
 
    t.clearMemory();
+
 t.addSong(s2);
+
     cout<<endl<<"display"<<endl;//debug
     t.showSongList();
 
