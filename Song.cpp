@@ -70,7 +70,7 @@ using namespace std;
      return false;
     }
 
-Song::~Song(){
-        cout<<"destructor";
+    Song::~Song(){
+
     }
 
