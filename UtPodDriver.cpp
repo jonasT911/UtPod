@@ -55,7 +55,7 @@ cout<<" Pod Created,";//debug
     t.showSongList();
     t.shuffle();
     t.showSongList();
-    t.shuffle();
+    t.sortSongList();
     t.showSongList();
 
 

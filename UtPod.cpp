@@ -194,7 +194,29 @@ cout<<endl<<"shuffle"<<endl;//debug
     }
 
     void UtPod::sortSongList(){
-        cout<<"sorting";
+        cout<<"sorting"<<endl;
+
+        SongNode *lowestSong=songs;
+        int lowestPosition=0;
+        SongNode *iterate=songs;
+        SongNode *swapSong=songs;
+        int listSize=numSongs();
+        for (int i=0;i<listSize;i++){
+            iterate=swapSong;
+            lowestSong=swapSong;
+            lowestPosition=i;
+            for(int j=i;j<listSize;j++){
+                if(iterate->s<lowestSong->s){
+                    lowestSong=iterate;
+                    lowestPosition=j;
+                }
+                iterate=iterate->next;
+            }
+
+            cout<<"swapping "<<i<<" and "<<lowestPosition<<endl;
+            swapSongs(i,lowestPosition);
+            swapSong=swapSong->next;
+        }
     }
     int UtPod::numSongs() {
         int count=0;
@@ -211,6 +233,4 @@ cout<<endl<<"shuffle"<<endl;//debug
         return count;
     }
 
-    UtPod::~UtPod(){
-
-    }
+    UtPod::~UtPod()= default;
