@@ -45,6 +45,7 @@ using namespace std;
         songs=temp;
            return SUCCESS;
        }else{
+           delete temp;
            return NO_MEMORY;
        }
     }
@@ -64,7 +65,6 @@ using namespace std;
         SongNode *trailer=songs;
         if (songs->s==s){
             //list head is target
-cout<<"head";
             songs=songs->next;
             delete trailer;
             return 0;
@@ -90,11 +90,12 @@ cout<<"head";
     }
 
     void UtPod::showSongList(){
+        cout<<endl;
         if(songs) {
             SongNode iterate = *songs;
             bool isMore = true;
             while (isMore) {
-                cout << "name= " << iterate.s.getName() << " artist= " << iterate.s.getArtist() << " size= "
+                cout << "name=" << iterate.s.getName() << " || artist=" << iterate.s.getArtist() << " || size="
                      << iterate.s.getSize() << endl;
 
                 if (iterate.next) {
@@ -105,7 +106,6 @@ cout<<"head";
 
             }
         }
-
     }
 
     int UtPod::getRemainingMemory(){
@@ -135,22 +135,14 @@ cout<<"head";
     void UtPod::clearMemory(){
         SongNode *trailer=songs;
         SongNode *iterate=songs;
-        bool isMore=true;
-        if (!songs){
-            isMore=false;
+        int listSize=numSongs();
+
+        for(int i=0;i<listSize;i++){
+           // cout<<"Deleting "<<(songs->s.getName());
+           removeSong(songs->s);
         }
-         while (isMore) {
 
-             delete trailer;
-             trailer=iterate;
-         if (iterate->next) {
-             iterate = iterate->next;
-         } else {
-             isMore = false;
-         }
-
-     }
-         songs=nullptr;
+        songs=nullptr;
     }
 
 
@@ -175,7 +167,7 @@ cout<<"head";
         int song1=0;
         int song2=0;
 
-        for(int i=0;i<listSize*5;i++) {
+        for(int i=0;i<listSize*7;i++) {
             song1 = rand() % listSize;
             song2 = rand() % listSize;
             swapSongs(song1, song2);

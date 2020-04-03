@@ -1,9 +1,7 @@
-//
-// Created by jonas on 3/30/2020.
-//
-
+#pragma once
 #ifndef UTPOD_SONG_H
 #define UTPOD_SONG_H
+
 
 #include <string>
 #include <iostream>

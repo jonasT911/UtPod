@@ -27,10 +27,11 @@ int main(int argc, char *argv[])
     t.showSongList();
     cout<<"Remaining Memory = "<<t.getRemainingMemory()<<endl<<endl;
 
+
     Song D4C("AC/DC","Filthy Acts For a Reasonable Price",16);
     Song SOS("ABBA","SOS",12);
 
-    Song largeSong("Notorious B.I.G","Big Poppa",508);
+    Song largeSong("Notorious B.I.G","Big Poppa",512);
     Song TooBig("Notorious B.I.G","Really Big Poppa",513);
 
     Song Bite("Queen","Another one Bites the Dust",8);
@@ -45,9 +46,12 @@ int main(int argc, char *argv[])
     cout << "Adding SOS result = " << result << endl;
     t.showSongList();
 
+    t.clearMemory();
+
     cout<<"Remaining Memory = "<<t.getRemainingMemory()<<endl;
     result = t.addSong(largeSong);
-    cout << "Adding song that is 508mb result = " << result << endl;
+    cout << "Adding song that is 512mb result = " << result << endl;
+
 
 
     cout<<endl<<"Adding More Songs"<<endl;
@@ -60,12 +64,8 @@ int main(int argc, char *argv[])
     t.showSongList();
     cout << "Remaining memory = " << t.getRemainingMemory() << endl;
 
-    cout<<endl<<"sorting the list"<<endl;
-    t.sortSongList();
-    t.showSongList();
-    cout<<endl<<"Shuffle the list"<<endl;
-    t.shuffle();
-    t.showSongList();
+
+
     cout<<endl<<"sorting the list"<<endl;
     t.sortSongList();
     t.showSongList();
@@ -75,15 +75,24 @@ int main(int argc, char *argv[])
 
     result = t.removeSong(kQ);
     cout <<endl<< "Removing Killer Queen result = " << result << endl;
-
     result = t.removeSong(D4C);
     cout << "Removing One AC/DC result = " << result << endl;
+    result = t.removeSong(Dust);
+    cout << "Removing the 30mb Another One Bites the Dust result= " << result << endl;
+
+    cout<<"Show List"<<endl;
+    t.showSongList();
+
+    cout<<endl<<"sorting the list"<<endl;
+    t.sortSongList();
+    t.showSongList();
+    cout<<endl<<"Shuffle the list"<<endl;
+    t.shuffle();
+    t.showSongList();
+
     result = t.removeSong(kQ);
     cout <<"Removing Killer Queen  when it is not in the list result= " << result << endl;
 
-    cout<<endl<<"printing list"<<endl;
-    t.showSongList();
-    
 
     cout<<endl<<"Clearing Memory"<<endl;
     t.clearMemory();
@@ -94,11 +103,13 @@ int main(int argc, char *argv[])
     result = t.addSong(TooBig);
     cout << "Adding 513mb result = " << result << endl;
 
-    cout<<"Adding 508mb song"<<endl;
+    cout<<"Adding 512mb song"<<endl;
     result = t.addSong(largeSong);
-    cout << "Adding 508mb result = " << result << endl;
+    cout << "Adding 512mb result = " << result << endl;
     cout<<"printing list"<<endl;
     t.showSongList();
+
+
     t.clearMemory();
 
     //Small UtPod Test
@@ -134,4 +145,5 @@ int main(int argc, char *argv[])
 
     UtPod Big(1000);
     cout << "Total memory of UtPod (1000) = " << Big.getTotalMemory() << endl;
+    
 }
